@@ -4,7 +4,16 @@
       "id": "print-tech-paper",
       "name": "Print-Tech Paper",
       "summary": "Software sold through the language of print: warm paper grounds, halftone texture, mono coordinate labels and editorial serifs. Feels considered, analog and trustworthy.",
-      "vocabulary": ["halftone CMYK dots", "warm paper ground", "mono coordinate labels", "registration marks", "editorial serif", "riso misregistration", "hairline rules", "spec-sheet captions"],
+      "vocabulary": [
+        "halftone CMYK dots",
+        "warm paper ground",
+        "mono coordinate labels",
+        "registration marks",
+        "editorial serif",
+        "riso misregistration",
+        "hairline rules",
+        "spec-sheet captions"
+      ],
       "typography": "Editorial serif for headlines (Instrument Serif, GT Sectra, Tiempos) paired with a monospace for labels and metadata.",
       "color": "Off-white or cream paper, ink black, one warm accent (vermillion, burnt orange) or a pale sage.",
       "layout": "Generous margins, centered hero copy, small mono annotations parked at the edges like print slugs.",
@@ -16,7 +25,16 @@
       "id": "dither-mono",
       "name": "Dither Mono",
       "summary": "One or two colors, everything rendered through ordered or error-diffusion dithering. Retro computing meets fine-art print.",
-      "vocabulary": ["1-bit dithering", "Bayer matrix", "Atkinson dither", "monochrome photography", "pixel grain", "terminal type", "duotone", "scanline"],
+      "vocabulary": [
+        "1-bit dithering",
+        "Bayer matrix",
+        "Atkinson dither",
+        "monochrome photography",
+        "pixel grain",
+        "terminal type",
+        "duotone",
+        "scanline"
+      ],
       "typography": "Bitmap or grotesk mono (Departure Mono, Space Mono, IBM Plex Mono); oversized headlines in a tight grotesk.",
       "color": "Strict 1-2 ink palette: black on bone, green on black, blue on white.",
       "layout": "Hard grid, full-bleed dithered imagery, sharp rectangles, no rounded corners.",
@@ -28,7 +46,16 @@
       "id": "vast-quiet-cinematic",
       "name": "Vast Quiet Cinematic",
       "summary": "Huge landscapes or skies, small type, lots of negative space. The page feels like a film still where the product is a quiet presence.",
-      "vocabulary": ["wide establishing shot", "atmospheric haze", "small centered type", "letterbox crop", "golden hour", "film grain", "lone subject", "horizon line"],
+      "vocabulary": [
+        "wide establishing shot",
+        "atmospheric haze",
+        "small centered type",
+        "letterbox crop",
+        "golden hour",
+        "film grain",
+        "lone subject",
+        "horizon line"
+      ],
       "typography": "Light-weight serif or refined sans, small sizes, wide tracking on labels.",
       "color": "Desaturated natural tones driven by the photograph; text in white or near-black.",
       "layout": "Full-bleed media, single focal line of copy, content revealed further down.",
@@ -40,7 +67,16 @@
       "id": "data-as-texture",
       "name": "Data-as-Texture",
       "summary": "Charts, coordinates, contour lines and raw numbers used as decoration. The data is the illustration.",
-      "vocabulary": ["topographic lines", "point clouds", "tabular figures", "mono data callouts", "wireframe 3D", "plotter lines", "ticker strips", "grid coordinates"],
+      "vocabulary": [
+        "topographic lines",
+        "point clouds",
+        "tabular figures",
+        "mono data callouts",
+        "wireframe 3D",
+        "plotter lines",
+        "ticker strips",
+        "grid coordinates"
+      ],
       "typography": "Neo-grotesk headlines, mono for every number, tabular figures.",
       "color": "Pale tinted ground (sage, ice, bone) with dark ink lines and one signal color.",
       "layout": "Central generative object, floating data cards and callouts anchored with leader lines.",
@@ -52,7 +88,16 @@
       "id": "classical-remix",
       "name": "Classical Remix",
       "summary": "Museum material (statues, engravings, old masters) cut up and recombined with modern UI and type.",
-      "vocabulary": ["marble statuary", "engraving linework", "collage cutouts", "museum label captions", "gilded accent", "chiaroscuro", "public-domain art", "roman numerals"],
+      "vocabulary": [
+        "marble statuary",
+        "engraving linework",
+        "collage cutouts",
+        "museum label captions",
+        "gilded accent",
+        "chiaroscuro",
+        "public-domain art",
+        "roman numerals"
+      ],
       "typography": "High-contrast didone or classical serif, set against a crisp modern sans.",
       "color": "Stone, sepia, deep black, with a single modern accent (electric blue, acid green).",
       "layout": "Asymmetric collage, layered cutouts, caption blocks like gallery placards.",
@@ -64,7 +109,16 @@
       "id": "glitched-antiquity",
       "name": "Glitched Antiquity",
       "summary": "Old imagery broken by digital artifacts: pixel sorting, datamosh, RGB split. History running on corrupted hardware.",
-      "vocabulary": ["pixel sorting", "RGB channel split", "datamosh", "scan corruption", "CRT bloom", "archival photography", "slit-scan", "bit rot"],
+      "vocabulary": [
+        "pixel sorting",
+        "RGB channel split",
+        "datamosh",
+        "scan corruption",
+        "CRT bloom",
+        "archival photography",
+        "slit-scan",
+        "bit rot"
+      ],
       "typography": "Classical serif cut with a glitch, or a stark mono on top of the noise.",
       "color": "Sepia or grayscale base with saturated RGB fringes.",
       "layout": "Big image fields, broken slices, overlapping horizontal bands.",
@@ -76,7 +130,16 @@
       "id": "illustrated-storybook",
       "name": "Illustrated Storybook",
       "summary": "Painterly or hand-drawn worlds that turn a product page into a scene. Warm, narrative, approachable.",
-      "vocabulary": ["gouache texture", "painterly landscape", "picture-book framing", "hand-lettered accents", "soft grain", "isometric diorama", "voxel scene", "character vignette"],
+      "vocabulary": [
+        "gouache texture",
+        "painterly landscape",
+        "picture-book framing",
+        "hand-lettered accents",
+        "soft grain",
+        "isometric diorama",
+        "voxel scene",
+        "character vignette"
+      ],
       "typography": "Friendly serif or rounded sans; occasional hand-lettered word.",
       "color": "Muted naturals (sage, ochre, dusty blue) with one warm accent.",
       "layout": "Centered illustration as hero, copy sitting in the sky or a clearing.",
@@ -88,16 +151,85 @@
       "id": "swiss-grid",
       "name": "Swiss Grid",
       "summary": "International Typographic Style: strict grids, flush-left grotesk, big numbers, primary color blocks.",
-      "vocabulary": ["modular grid", "flush-left ragged-right", "neo-grotesk", "oversized numerals", "color blocking", "asymmetric balance", "hairline dividers", "index lists"],
+      "vocabulary": [
+        "modular grid",
+        "flush-left ragged-right",
+        "neo-grotesk",
+        "oversized numerals",
+        "color blocking",
+        "asymmetric balance",
+        "hairline dividers",
+        "index lists"
+      ],
       "typography": "One grotesk family (Helvetica Now, Neue Haas, Inter Display) in 2-3 weights.",
       "color": "White, black and one primary (red is classic).",
       "layout": "Visible 12-column logic, type as the main image, alignment over decoration.",
       "motion": "Snappy slides along the grid, nothing bouncy.",
       "useWhen": "Agencies, portfolios, events, documentation.",
       "avoid": "Centered everything; Swiss work lives on the left edge."
+    },
+    {
+      "id": "organic-soft-ui",
+      "name": "Organic Soft UI",
+      "summary": "Earthy, calm product UI: deep olive or forest grounds, pale chartreuse surfaces, big rounded corners and pill buttons. Friendly and grown-up at the same time, common in food, agri, wellness and sustainability brands.",
+      "vocabulary": [
+        "deep olive ground",
+        "pale chartreuse cards",
+        "two-tone card (white tab + tinted body)",
+        "large corner radius",
+        "pill CTAs",
+        "outline pill eyebrow",
+        "botanical glyph bullets",
+        "stepped / staircase cards",
+        "rounded grotesk"
+      ],
+      "typography": "Rounded or geometric grotesk (General Sans, Satoshi, Manrope, Plus Jakarta Sans). Medium weight headlines, regular body, no serif.",
+      "color": "Dark olive or forest green as the page, a pale lime or sage for surfaces, white for highlights, the dark ground reused for buttons.",
+      "layout": "Left-aligned headline with a small eyebrow pill on the far right, generous padding, cards that bleed off the bottom edge.",
+      "motion": "Soft rise-in on scroll, cards staggered by height, gentle hover lift on CTAs.",
+      "useWhen": "Food, agriculture, wellness, sustainability and B2B products that want warm and natural instead of techy.",
+      "avoid": "Neon greens and pure black; keep every color slightly muted and warm."
     }
   ],
   "entries": [
+    {
+      "id": "olive-stepped-pricing",
+      "title": "Olive Stepped Pricing",
+      "url": "",
+      "category": "organic-soft-ui",
+      "section": "Pricing",
+      "tagline": "earthy soft UI x stepped cards",
+      "description": "Three pricing tiers on a deep olive ground. Each card steps up in height from left to right, so the Enterprise plan sits highest and reads as the top tier. Cards are two-tone: a white tab holds the plan name, a pale chartreuse body holds price, CTA and features, and they bleed off the bottom edge.",
+      "anatomy": [
+        "Headline top-left, 2 lines, white, medium weight",
+        "Outline pill eyebrow (PRICING) top-right",
+        "Short intro paragraph bottom-left, under the headline column",
+        "Three cards on the right, each raised higher than the last (staircase)",
+        "Card top: white rounded tab with the plan name in caps",
+        "Card body: chartreuse, one-line description, big price with small /month",
+        "Full-width dark olive pill CTA",
+        "Feature list with a small botanical asterisk bullet",
+        "Cards run off the bottom of the section"
+      ],
+      "tags": [
+        "stepped card heights",
+        "two-tone cards",
+        "deep olive ground",
+        "pale chartreuse surfaces",
+        "pill CTAs",
+        "outline pill eyebrow",
+        "botanical bullets"
+      ],
+      "fonts": "Rounded geometric grotesk (General Sans / Satoshi style): headline ~48px medium, price ~44px medium, body 13-14px regular, plan names in caps with light tracking.",
+      "palette": [
+        "#3A3D2B",
+        "#E3EFB4",
+        "#FFFFFF",
+        "#2F3224"
+      ],
+      "image": "shots/olive-stepped-pricing.png",
+      "prompt": "Build a pricing section for [BRAND] in the Organic Soft UI style. Background: deep olive (#3A3D2B), generous padding. Top-left: a two-line white headline \"[HEADLINE]\" in a rounded geometric grotesk, medium weight. Top-right: a small outlined pill eyebrow reading PRICING. Bottom-left: a short white intro paragraph (max 32ch). Right side: three pricing cards in a row, each one stepped higher than the previous one (about 40px per step) so they form a staircase, and all three bleed off the bottom edge of the section. Each card: a white rounded tab on top with the plan name in caps, then a pale chartreuse (#E3EFB4) body with large radius containing a one-line description, a big price with a small \"/month\", a full-width dark olive pill CTA, and a feature list with small botanical asterisk bullets. Plans: [PLANS: name, price, description, features]. On mobile, stack the cards vertically, remove the stepping and keep the two-tone cards. Add a soft staggered rise-in on scroll."
+    },
     {
       "id": "sample-quiet-workspace",
       "title": "Quiet Workspace (sample)",
@@ -106,10 +238,27 @@
       "section": "Hero",
       "tagline": "warm editorial x print DNA",
       "description": "A calm AI writing tool framed as a printed page: halftone tree on a paper ground, coordinates in the corners.",
-      "tags": ["halftone CMYK dots", "warm paper ground", "mono coordinate labels", "single accent word"],
-      "palette": ["#F3EEE4", "#1C1A17", "#D2572B", "#8A9A5B"],
+      "tags": [
+        "halftone CMYK dots",
+        "warm paper ground",
+        "mono coordinate labels",
+        "single accent word"
+      ],
+      "palette": [
+        "#F3EEE4",
+        "#1C1A17",
+        "#D2572B",
+        "#8A9A5B"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a lone tree on a grassy hill] printed as a coarse CMYK halftone on warm uncoated paper, visible dot rosettes, slight riso misregistration, generous empty sky for typography, muted greens and burnt orange, no gradients"
+      "prompt": "Build a hero section for [BRAND] in the Print-Tech Paper style. Warm off-white paper background, centered two-line headline in an editorial serif with one accent word in burnt orange, short sub-copy in a monospace, a single dark pill CTA. Place a large halftone illustration of [VISUAL] below the headline. Add tiny mono coordinate labels in the top-left and bottom-right corners. Content: [CONTENT]. Responsive down to 375px, no gradients or shadows.",
+      "anatomy": [
+        "Top nav: logo left, centered links, dark pill CTA right",
+        "Centered 2-line serif headline, one accent word",
+        "Halftone illustration under the headline",
+        "Mono coordinate labels in two corners",
+        "Logo strip along the bottom"
+      ]
     },
     {
       "id": "sample-ledger-ai",
@@ -119,10 +268,26 @@
       "section": "Hero",
       "tagline": "print-tech x data",
       "description": "Finance platform hero with a topographic coin object, mono receipt callouts and a pale sage ground.",
-      "tags": ["pale sage ground", "topographic line illustration", "mono data callouts"],
-      "palette": ["#E6EEDF", "#121412", "#2F6B4F", "#F7F7F2"],
+      "tags": [
+        "pale sage ground",
+        "topographic line illustration",
+        "mono data callouts"
+      ],
+      "palette": [
+        "#E6EEDF",
+        "#121412",
+        "#2F6B4F",
+        "#F7F7F2"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a coin] rendered only from stacked topographic contour lines, plotter-pen black ink on pale sage, isometric three-quarter view, no fills, crisp vector feel, centered with empty space around"
+      "prompt": "Build a hero section for [BRAND] in the Data-as-Texture style. Pale sage background, centered bold grotesk headline over two lines, a central line-art object made of contour lines, and two floating data cards (mono numbers, hairline borders) attached with thin leader lines. One dark CTA button below. Content: [CONTENT].",
+      "anatomy": [
+        "Nav with links and a contact pill",
+        "Centered bold headline",
+        "Central contour-line object",
+        "Two floating data cards with leader lines",
+        "Short paragraph + CTA under the object"
+      ]
     },
     {
       "id": "sample-halftone-sails",
@@ -132,10 +297,20 @@
       "section": "Full page",
       "tagline": "archival x halftone",
       "description": "Archival sailing photos broken into halftone dot fields and cream blocks, with a technical circle overlay.",
-      "tags": ["halftone dot fields", "cream blocks", "archival photography", "technical overlay"],
-      "palette": ["#E9DFCF", "#2A2622", "#A7907A", "#F5EFE6"],
+      "tags": [
+        "halftone dot fields",
+        "cream blocks",
+        "archival photography",
+        "technical overlay"
+      ],
+      "palette": [
+        "#E9DFCF",
+        "#2A2622",
+        "#A7907A",
+        "#F5EFE6"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a tall ship under sail] archival photograph converted to large halftone dots, cut into rectangular collage panels on cream, thin technical circle and crosshair overlay, sepia and charcoal only"
+      "prompt": "Build a full landing page for [BRAND] as an archival collage: a grid of rectangular image panels (halftone-treated photos and flat cream blocks), a thin technical circle overlay across panels, sepia and charcoal only, serif headings, mono captions. Sections: [SECTIONS]."
     },
     {
       "id": "sample-signal-terminal",
@@ -145,23 +320,42 @@
       "section": "Hero",
       "tagline": "1-bit x devtool",
       "description": "Developer platform hero: a dithered satellite dish on black, phosphor green type, hard-edged UI.",
-      "tags": ["1-bit dithering", "phosphor green", "terminal type", "hard edges"],
-      "palette": ["#0B0D0B", "#7CFF8A", "#1E2A1F", "#E8F5E9"],
+      "tags": [
+        "1-bit dithering",
+        "phosphor green",
+        "terminal type",
+        "hard edges"
+      ],
+      "palette": [
+        "#0B0D0B",
+        "#7CFF8A",
+        "#1E2A1F",
+        "#E8F5E9"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a satellite dish at night] rendered as 1-bit Atkinson dither, phosphor green on pure black, no grays, visible pixel grain, wide crop with empty left half for text"
+      "prompt": "Build a dark developer-tool hero for [BRAND]: pure black background, phosphor green monospace type, a 1-bit dithered image on the right half, hard rectangular buttons with no radius, a blinking cursor after the headline. Content: [CONTENT]."
     },
     {
       "id": "sample-bone-archive",
       "title": "Bone Archive (sample)",
       "url": "",
       "category": "dither-mono",
-      "section": "Gallery grid",
+      "section": "Gallery",
       "tagline": "museum x bitmap",
       "description": "Archive index where every object photo is ordered-dithered in black on bone; grid of tiles with mono captions.",
-      "tags": ["Bayer matrix", "monochrome photography", "index grid", "mono captions"],
-      "palette": ["#EDE8DD", "#111111", "#8C857A"],
+      "tags": [
+        "Bayer matrix",
+        "monochrome photography",
+        "index grid",
+        "mono captions"
+      ],
+      "palette": [
+        "#EDE8DD",
+        "#111111",
+        "#8C857A"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a ceramic vase] photographed straight-on, converted to 4x4 Bayer ordered dither, black ink on bone paper, centered object, flat even light"
+      "prompt": "Build a gallery grid section for [BRAND]: bone-colored background, 4-column grid of square tiles with dithered black-and-white images, mono captions under each tile (index number, title, year), filter links above the grid. Items: [CONTENT]."
     },
     {
       "id": "sample-stillness",
@@ -171,23 +365,43 @@
       "section": "Hero",
       "tagline": "editorial x voxel 3D",
       "description": "Meditation landscape built from blocks: digital material, calm subject, serif headline with a green emphasis word.",
-      "tags": ["voxel-rendered landscape", "pixel mountains and river", "clean white ground", "muted blue-coral-green palette"],
-      "palette": ["#F4F1EA", "#3F6E8C", "#E07A5F", "#5E8C61"],
+      "tags": [
+        "voxel-rendered landscape",
+        "pixel mountains and river",
+        "clean white ground",
+        "muted blue-coral-green palette"
+      ],
+      "palette": [
+        "#F4F1EA",
+        "#3F6E8C",
+        "#E07A5F",
+        "#5E8C61"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a mountain valley with a river and pine trees] built entirely from small 3D voxels, diorama style, strict muted palette of slate blue, white snow, coral accent patches and sage foliage, soft studio light, isolated on a clean white ground with empty space above"
+      "prompt": "Build a hero section for [BRAND]: clean warm-white background, centered serif headline with one word in green, two small pill buttons (filled + outline), and a wide illustrated scene of [VISUAL] filling the lower half. Muted blue, coral and sage palette. Content: [CONTENT]."
     },
     {
       "id": "sample-gouache-garden",
       "title": "Gouache Garden (sample)",
       "url": "",
       "category": "illustrated-storybook",
-      "section": "Feature section",
+      "section": "Features",
       "tagline": "picture-book x product",
       "description": "Feature row where each benefit is a small gouache vignette in a rounded frame.",
-      "tags": ["gouache texture", "character vignette", "soft grain", "rounded frames"],
-      "palette": ["#F6EFE2", "#C8873A", "#6F8F72", "#2E3A3F"],
+      "tags": [
+        "gouache texture",
+        "character vignette",
+        "soft grain",
+        "rounded frames"
+      ],
+      "palette": [
+        "#F6EFE2",
+        "#C8873A",
+        "#6F8F72",
+        "#2E3A3F"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a fox reading under a lamp] gouache illustration with visible brush texture and paper grain, ochre, sage and deep slate palette, picture-book composition, soft warm light"
+      "prompt": "Build a features section for [BRAND]: three or four columns, each with a small illustrated vignette in a rounded frame, a short friendly heading and two lines of copy. Warm cream background, ochre and sage accents. Features: [CONTENT]."
     },
     {
       "id": "sample-horizon",
@@ -197,10 +411,20 @@
       "section": "Hero",
       "tagline": "film still x product",
       "description": "Full-bleed desert dawn with one small line of centered type; the product appears only after the first scroll.",
-      "tags": ["wide establishing shot", "atmospheric haze", "small centered type", "film grain"],
-      "palette": ["#D9C6AE", "#6E5B4C", "#F2E9DC", "#2B2420"],
+      "tags": [
+        "wide establishing shot",
+        "atmospheric haze",
+        "small centered type",
+        "film grain"
+      ],
+      "palette": [
+        "#D9C6AE",
+        "#6E5B4C",
+        "#F2E9DC",
+        "#2B2420"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a desert plateau at dawn] ultra-wide cinematic establishing shot, thick atmospheric haze, a tiny lone figure on the horizon, desaturated warm tones, 35mm film grain, vast empty sky"
+      "prompt": "Build a cinematic hero for [BRAND]: full-bleed landscape image or video of [VISUAL], one small centered line of serif copy, no nav clutter above the fold, a subtle scroll cue at the bottom. The product content starts only after the first scroll. Content: [CONTENT]."
     },
     {
       "id": "sample-ice-field",
@@ -210,10 +434,20 @@
       "section": "Full page",
       "tagline": "cold minimal x premium",
       "description": "Glacier aerials as section dividers, thin white serif, letterboxed video bands.",
-      "tags": ["letterbox crop", "horizon line", "small centered type", "slow parallax"],
-      "palette": ["#DCE6EA", "#5C7480", "#FFFFFF", "#1B252B"],
+      "tags": [
+        "letterbox crop",
+        "horizon line",
+        "small centered type",
+        "slow parallax"
+      ],
+      "palette": [
+        "#DCE6EA",
+        "#5C7480",
+        "#FFFFFF",
+        "#1B252B"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: an aerial view of a glacier] letterboxed 2.39:1 cinematic frame, pale blue and white, soft overcast light, minimal detail, large calm negative space"
+      "prompt": "Build a full page for [BRAND] using letterboxed 2.39:1 image bands as section dividers, thin white serif headings, lots of empty space, slow parallax on the image bands. Sections: [SECTIONS]."
     },
     {
       "id": "sample-marble-capital",
@@ -223,10 +457,20 @@
       "section": "Hero",
       "tagline": "museum x fintech",
       "description": "A cropped marble bust collaged with UI cards and an electric blue accent; captions styled as museum placards.",
-      "tags": ["marble statuary", "collage cutouts", "museum label captions", "electric blue accent"],
-      "palette": ["#ECE8E1", "#141414", "#2B4CFF", "#B8B0A4"],
+      "tags": [
+        "marble statuary",
+        "collage cutouts",
+        "museum label captions",
+        "electric blue accent"
+      ],
+      "palette": [
+        "#ECE8E1",
+        "#141414",
+        "#2B4CFF",
+        "#B8B0A4"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a classical marble bust] dramatic chiaroscuro lighting, cut out cleanly and collaged with flat electric-blue rectangles, stone and black palette, editorial magazine composition"
+      "prompt": "Build a hero for [BRAND] in the Classical Remix style: a cropped classical artwork cut out on the right, overlapped by flat electric-blue rectangles and two small UI cards, a high-contrast serif headline on the left, captions styled as museum placards. Content: [CONTENT]."
     },
     {
       "id": "sample-engraved-index",
@@ -236,10 +480,18 @@
       "section": "Footer",
       "tagline": "engraving x grotesk",
       "description": "Footer built around a large 18th-century engraving with roman-numeral nav columns.",
-      "tags": ["engraving linework", "roman numerals", "public-domain art"],
-      "palette": ["#F1EBDD", "#1D1A16", "#9C7A3C"],
+      "tags": [
+        "engraving linework",
+        "roman numerals",
+        "public-domain art"
+      ],
+      "palette": [
+        "#F1EBDD",
+        "#1D1A16",
+        "#9C7A3C"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a celestial map] in fine copperplate engraving linework, sepia ink on aged paper, intricate crosshatching, centered with wide margins"
+      "prompt": "Build a footer for [BRAND]: aged-paper background, a large engraving illustration spanning the top, navigation in columns headed by roman numerals, small serif links, a thin rule above the legal row. Links: [CONTENT]."
     },
     {
       "id": "sample-corrupt-relic",
@@ -249,10 +501,19 @@
       "section": "Hero",
       "tagline": "archive x datamosh",
       "description": "Old portrait photograph with horizontal pixel-sorted bands and RGB fringes behind a stark mono headline.",
-      "tags": ["pixel sorting", "RGB channel split", "archival photography"],
-      "palette": ["#1A1612", "#C9B79C", "#FF2D55", "#00E5FF"],
+      "tags": [
+        "pixel sorting",
+        "RGB channel split",
+        "archival photography"
+      ],
+      "palette": [
+        "#1A1612",
+        "#C9B79C",
+        "#FF2D55",
+        "#00E5FF"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: a 19th-century portrait photograph] partially corrupted with horizontal pixel-sorting bands and red/cyan channel split, sepia base, one clean undamaged area on the face"
+      "prompt": "Build a hero for [BRAND]: dark background, an archival photo with horizontal glitch bands and red/cyan channel offset, a stark monospace headline over it, one outlined CTA. Keep one area of the image clean. Content: [CONTENT]."
     },
     {
       "id": "sample-red-index",
@@ -262,10 +523,39 @@
       "section": "Navigation",
       "tagline": "typographic x agency",
       "description": "Agency index page: oversized numerals, flush-left list, one red block marking the active item.",
-      "tags": ["oversized numerals", "flush-left ragged-right", "color blocking", "index lists"],
-      "palette": ["#FFFFFF", "#0A0A0A", "#E3241B"],
+      "tags": [
+        "oversized numerals",
+        "flush-left ragged-right",
+        "color blocking",
+        "index lists"
+      ],
+      "palette": [
+        "#FFFFFF",
+        "#0A0A0A",
+        "#E3241B"
+      ],
       "image": "",
-      "prompt": "[SUBJECT: abstract poster] International Typographic Style composition, strict modular grid, solid red rectangle, black geometric forms on white, no texture"
+      "prompt": "Build a navigation/index page for [BRAND] in Swiss style: white background, strict 12-column grid, oversized numerals next to a flush-left list of items, a solid red block marking the active item, black grotesk type only. Items: [CONTENT].",
+      "anatomy": [
+        "Oversized numeral column",
+        "Flush-left item list",
+        "Red block on the active row",
+        "Hairline dividers between rows"
+      ]
     }
+  ],
+  "sections": [
+    "Hero",
+    "Navigation",
+    "Features",
+    "Pricing",
+    "Testimonials",
+    "Stats",
+    "Logos",
+    "Gallery",
+    "CTA",
+    "FAQ",
+    "Footer",
+    "Full page"
   ]
 }

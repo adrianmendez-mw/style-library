@@ -1,13 +1,15 @@
 // Style Library: static, data-driven. Content lives in data/library.json.
 const $ = (s, el = document) => el.querySelector(s);
 const esc = (s = "") => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const slug = s => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
-const state = { data: null, filter: "all", query: "" };
+const state = { style: "all", section: "all", view: "grid", query: "" };
 
 const res = await fetch("data/library.json", { cache: "no-cache" });
-state.data = await res.json();
-const { categories, entries } = state.data;
+const { categories, entries, sections: sectionList = [] } = await res.json();
 const catById = Object.fromEntries(categories.map(c => [c.id, c]));
+// Section types: the canonical list first, then any extra values used by entries.
+const sections = [...new Set([...sectionList, ...entries.map(e => e.section).filter(Boolean)])];
 
 readHash();
 render();
@@ -16,52 +18,79 @@ window.addEventListener("hashchange", () => { readHash(); render(); });
 $("#search").addEventListener("input", e => { state.query = e.target.value.trim().toLowerCase(); render(); });
 $("#addBtn").addEventListener("click", openAdd);
 
-/* ---------- routing: #style=<id> | #vocabulary | #entry=<id> ---------- */
+/* ---------- routing: #style=<id>&section=<slug> | #view=vocabulary | #entry=<id> ---------- */
 function readHash() {
-  const h = decodeURIComponent(location.hash.slice(1));
-  if (h.startsWith("style=")) state.filter = h.slice(6);
-  else if (h === "vocabulary") state.filter = "vocabulary";
-  else if (!h.startsWith("entry=")) state.filter = "all";
-  const entryId = h.startsWith("entry=") ? h.slice(6) : null;
-  if (entryId) openEntry(entryId); else if ($("#modal").open) $("#modal").close();
+  const p = new URLSearchParams(location.hash.slice(1));
+  const entryId = p.get("entry");
+  if (entryId) { openEntry(entryId); return; }
+  state.style = p.get("style") || "all";
+  state.section = p.get("section") || "all";
+  state.view = p.get("view") === "vocabulary" ? "vocabulary" : "grid";
+  if ($("#modal").open) $("#modal").close();
 }
-function setFilter(f) {
-  location.hash = f === "all" ? "" : f === "vocabulary" ? "vocabulary" : `style=${f}`;
-  if (f === "all") { state.filter = "all"; render(); history.replaceState(null, "", location.pathname); }
+function hashFor({ style = state.style, section = state.section, view = "grid" } = {}) {
+  if (view === "vocabulary") return "#view=vocabulary";
+  const p = new URLSearchParams();
+  if (style !== "all") p.set("style", style);
+  if (section !== "all") p.set("section", section);
+  return p.toString() ? `#${p}` : location.pathname;
+}
+function go(next) {
+  const h = hashFor(next);
+  if (h === location.pathname) { history.pushState(null, "", h); readHash(); render(); }
+  else location.hash = h;
 }
 
 /* ---------- rendering ---------- */
 function render() {
   renderChips();
-  const isVocab = state.filter === "vocabulary";
+  const isVocab = state.view === "vocabulary";
   $("#vocab").hidden = !isVocab;
   $("#grid").hidden = isVocab;
-  const cat = catById[state.filter];
+  $("#sectionChips").hidden = isVocab;
+  const cat = !isVocab && catById[state.style];
   $("#guide").hidden = !cat;
   if (cat) $("#guide").innerHTML = guideHTML(cat, true);
   if (isVocab) {
     $("#vocab").innerHTML = categories.map(c => `<section class="guide">${guideHTML(c, false)}</section>`).join("");
     $("#empty").hidden = true;
   } else renderGrid();
-  $("#count").textContent = `${entries.length} entries / ${categories.length} styles`;
+  $("#count").textContent = `${entries.length} entries / ${categories.length} styles / ${sections.length} section types`;
 }
 
+function chip(group, id, label, n, pressed, alt = "") {
+  return `<button class="chip ${alt}" type="button" data-g="${group}" data-f="${esc(id)}" aria-pressed="${pressed}"${n === 0 ? " data-empty" : ""}>${esc(label)}${n != null ? `<span>${n}</span>` : ""}</button>`;
+}
 function renderChips() {
-  const counts = entries.reduce((m, e) => (m[e.category] = (m[e.category] || 0) + 1, m), {});
-  const chip = (id, label, n, alt = "") =>
-    `<button class="chip ${alt}" type="button" data-f="${esc(id)}" aria-pressed="${state.filter === id}">${esc(label)}${n != null ? `<span>${n}</span>` : ""}</button>`;
-  $("#chips").innerHTML =
-    chip("all", "All", entries.length) +
-    categories.map(c => chip(c.id, c.name, counts[c.id] || 0)).join("") +
-    chip("vocabulary", "◈ Style vocabulary", categories.length, "chip--alt");
-  $("#chips").querySelectorAll(".chip").forEach(b => b.onclick = () => setFilter(b.dataset.f));
+  const isVocab = state.view === "vocabulary";
+  // Style counts respect the active section, section counts respect the active style.
+  const inSection = entries.filter(e => state.section === "all" || slug(e.section) === state.section);
+  const inStyle = entries.filter(e => state.style === "all" || e.category === state.style);
+  const styleN = id => inSection.filter(e => e.category === id).length;
+  const sectionN = s => inStyle.filter(e => slug(e.section) === slug(s)).length;
+
+  $("#chips").innerHTML = `<span class="chips__label">Style</span>` +
+    chip("style", "all", "All", inSection.length, !isVocab && state.style === "all") +
+    categories.map(c => chip("style", c.id, c.name, styleN(c.id), !isVocab && state.style === c.id)).join("") +
+    chip("view", "vocabulary", "◈ Style vocabulary", categories.length, isVocab, "chip--alt");
+  $("#sectionChips").innerHTML = `<span class="chips__label">Section</span>` +
+    chip("section", "all", "Any", inStyle.length, state.section === "all") +
+    sections.map(s => chip("section", slug(s), s, sectionN(s), state.section === slug(s))).join("");
+
+  document.querySelectorAll(".chip").forEach(b => b.onclick = () => {
+    const { g, f } = b.dataset;
+    if (g === "view") go({ view: "vocabulary" });
+    else if (g === "style") go({ style: f });
+    else go({ section: f });
+  });
 }
 
 function matches(e) {
-  if (state.filter !== "all" && e.category !== state.filter) return false;
+  if (state.style !== "all" && e.category !== state.style) return false;
+  if (state.section !== "all" && slug(e.section) !== state.section) return false;
   if (!state.query) return true;
   const c = catById[e.category] || {};
-  const hay = [e.title, e.tagline, e.description, e.section, ...(e.tags || []), c.name, ...(c.vocabulary || [])].join(" ").toLowerCase();
+  const hay = [e.title, e.tagline, e.description, e.section, e.fonts, ...(e.tags || []), ...(e.anatomy || []), c.name, ...(c.vocabulary || [])].join(" ").toLowerCase();
   return state.query.split(/\s+/).every(q => hay.includes(q));
 }
 
@@ -73,7 +102,7 @@ function renderGrid() {
     const idx = entries.indexOf(e) + 1;
     const tags = e.tags || [];
     return `<button class="card" type="button" data-id="${esc(e.id)}">
-      <div class="thumb">${thumb(e)}${e.section ? `<span class="thumb__badge">${esc(e.section)}</span>` : ""}</div>
+      <div class="thumb">${thumb(e)}${e.section ? `<span class="thumb__badge">${esc(e.section)}</span>` : ""}${isAnimated(e.image) ? `<span class="thumb__badge thumb__badge--r">GIF</span>` : ""}</div>
       <div class="card__body">
         <div class="card__head"><h3 class="card__title">${esc(e.title)}</h3><span class="card__tagline">${esc(e.tagline || "")}</span></div>
         <div class="tags">${tags.slice(0, 3).map(t => `<span class="tag">${esc(t)}</span>`).join("")}${tags.length > 3 ? `<span class="tag tag--more">+${tags.length - 3}</span>` : ""}</div>
@@ -83,6 +112,7 @@ function renderGrid() {
   }).join("");
   $("#grid").querySelectorAll(".card").forEach(b => b.onclick = () => (location.hash = `entry=${b.dataset.id}`));
 }
+function isAnimated(src) { return /\.gif($|\?)/i.test(src || ""); }
 
 function guideHTML(c, withCount) {
   const n = entries.filter(e => e.category === c.id).length;
@@ -106,43 +136,47 @@ function openEntry(id) {
   if (!e) return;
   const c = catById[e.category] || { name: e.category };
   const m = $("#modal");
-  const prompt = esc(e.prompt || "").replace(/\[(SUBJECT:[^\]]*)\]/, "<mark>[$1]</mark>");
+  // Highlight placeholders like [BRAND] or [CONTENT: ...] the user should fill in.
+  const prompt = esc(e.prompt || "").replace(/\[([A-Z][A-Z _-]*(?::[^\]]*)?)\]/g, "<mark>[$1]</mark>");
   m.innerHTML = `
     <div class="modal__media">${e.image ? `<img src="${esc(e.image)}" alt="${esc(e.title)} screenshot">` : thumb(e)}</div>
     <div class="modal__body">
       <div class="modal__head"><h2 class="modal__title">${esc(e.title)}</h2><span class="modal__meta">${esc(e.tagline || "")}</span></div>
       <p class="modal__desc">${esc(e.description || "")}</p>
-      <p class="modal__meta"><a href="#style=${esc(c.id || "")}">${esc(c.name)}</a>${e.section ? ` / ${esc(e.section)}` : ""}${e.url ? ` / <a href="${esc(e.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ""}</p>
+      <p class="modal__meta"><a href="#style=${esc(c.id || "")}">${esc(c.name)}</a>${e.section ? ` / <a href="#section=${slug(e.section)}">${esc(e.section)}</a>` : ""}${e.url ? ` / <a href="${esc(e.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ""}</p>
       <div class="tags">${(e.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
-      ${e.palette?.length ? `<p class="label">Palette</p><div class="palette">${e.palette.map(p => `<span class="swatch"><i style="background:${esc(p)}"></i>${esc(p)}</span>`).join("")}</div>` : ""}
-      ${e.prompt ? `<div class="recipe"><p class="label">Image recipe: replace [SUBJECT]</p>${prompt}</div>` : ""}
+      <div class="specs">
+        ${e.anatomy?.length ? `<div><p class="label">Anatomy</p><ol class="anatomy">${e.anatomy.map(a => `<li>${esc(a)}</li>`).join("")}</ol></div>` : ""}
+        <div>
+          ${e.fonts ? `<p class="label">Type</p><p class="spec">${esc(e.fonts)}</p>` : ""}
+          ${e.palette?.length ? `<p class="label">Palette</p><div class="palette">${e.palette.map(p => `<span class="swatch"><i style="background:${esc(p)}"></i>${esc(p)}</span>`).join("")}</div>` : ""}
+        </div>
+      </div>
+      ${e.prompt ? `<div class="recipe"><p class="label">Build prompt: fill the highlighted parts</p>${prompt}</div>` : ""}
       <div class="actions">
-        <button class="btn" data-copy="brief" type="button">Copy brief</button>
-        ${e.prompt ? `<button class="btn" data-copy="prompt" type="button">Copy image prompt</button>` : ""}
+        ${e.prompt ? `<button class="btn" data-copy="prompt" type="button">Copy build prompt</button>` : ""}
+        <button class="btn" data-copy="brief" type="button">Copy style brief</button>
         <button class="btn btn--ghost" data-close type="button">Close</button>
       </div>
     </div>`;
   m.querySelector("[data-close]").onclick = () => m.close();
   m.querySelectorAll("[data-copy]").forEach(b => b.onclick = () => copy(b.dataset.copy === "brief" ? brief(e, c) : e.prompt));
-  m.onclose = () => {
-    if (!location.hash.startsWith("#entry=")) return;
-    const f = state.filter;
-    history.replaceState(null, "", f === "all" ? location.pathname : `#${f === "vocabulary" ? f : `style=${f}`}`);
-  };
+  m.onclose = () => { if (location.hash.startsWith("#entry=")) history.replaceState(null, "", hashFor()); };
   m.onclick = ev => { if (ev.target === m) m.close(); };
   if (!m.open) m.showModal();
 }
 
 function brief(e, c) {
   return [
-    `${e.title} (${c.name}${e.tagline ? `, ${e.tagline}` : ""})`,
+    `${e.title}: ${e.section || "section"} in the ${c.name} style${e.tagline ? ` (${e.tagline})` : ""}`,
     e.description,
     "",
-    `Style: ${c.summary || ""}`,
+    e.anatomy?.length && `Anatomy:\n${e.anatomy.map((a, i) => `${i + 1}. ${a}`).join("\n")}`,
     `Key moves: ${(e.tags || []).join(", ")}`,
-    c.typography && `Typography: ${c.typography}`,
-    c.color && `Color: ${c.color}`,
+    e.fonts && `Type: ${e.fonts}`,
     e.palette?.length && `Palette: ${e.palette.join(" ")}`,
+    "",
+    `Style (${c.name}): ${c.summary || ""}`,
     c.layout && `Layout: ${c.layout}`,
     c.motion && `Motion: ${c.motion}`,
     c.avoid && `Avoid: ${c.avoid}`,
@@ -167,14 +201,16 @@ function openAdd() {
     <form class="form" id="addForm" style="margin-top:20px">
       <label>Title<input name="title" required></label>
       <label>Style<select name="category">${categories.map(c => `<option value="${esc(c.id)}">${esc(c.name)}</option>`).join("")}</select></label>
+      <label>Section type<input name="section" list="sectionOpts" placeholder="Pricing"><datalist id="sectionOpts">${sections.map(s => `<option value="${esc(s)}">`).join("")}</datalist></label>
       <label>URL<input name="url" type="url" placeholder="https://"></label>
-      <label>Section<input name="section" placeholder="Hero, Footer, Full page"></label>
-      <label>Tagline<input name="tagline" placeholder="warm editorial x print DNA"></label>
-      <label>Screenshot path<input name="image" placeholder="shots/my-site.jpg"></label>
+      <label>Tagline<input name="tagline" placeholder="earthy soft UI x stepped cards"></label>
+      <label>Screenshot or GIF path<input name="image" placeholder="shots/my-site-pricing.gif"></label>
       <label class="full">Description<textarea name="description"></textarea></label>
+      <label class="full">Anatomy (one part per line)<textarea name="anatomy" placeholder="Headline top-left&#10;Three cards, ascending heights"></textarea></label>
       <label class="full">Tags (comma separated)<input name="tags"></label>
-      <label class="full">Palette (hex, comma separated)<input name="palette" placeholder="#F3EEE4, #1C1A17"></label>
-      <label class="full">Image prompt<textarea name="prompt" placeholder="[SUBJECT: ...] rendered as ..."></textarea></label>
+      <label>Type<input name="fonts" placeholder="Rounded grotesk, 400/500"></label>
+      <label>Palette (hex, comma separated)<input name="palette" placeholder="#3A3D2C, #E4F0B4"></label>
+      <label class="full">Build prompt<textarea name="prompt" placeholder="Build a [SECTION] for [BRAND] with..."></textarea></label>
     </form>
     <textarea class="out" id="addOut" readonly></textarea>
     <div class="actions">
@@ -182,12 +218,12 @@ function openAdd() {
       <button class="btn btn--ghost" id="addClose" type="button">Close</button>
     </div></div>`;
   const form = $("#addForm", m), out = $("#addOut", m);
-  const list = s => s.split(",").map(x => x.trim()).filter(Boolean);
+  const list = (s, sep = ",") => s.split(sep).map(x => x.trim()).filter(Boolean);
   const update = () => {
     const f = Object.fromEntries(new FormData(form));
-    const id = (f.title || "untitled").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-    out.value = JSON.stringify({ id, title: f.title, url: f.url, category: f.category, section: f.section, tagline: f.tagline,
-      description: f.description, tags: list(f.tags), palette: list(f.palette), image: f.image, prompt: f.prompt }, null, 2) + ",";
+    out.value = JSON.stringify({ id: slug(f.title) || "untitled", title: f.title, url: f.url, category: f.category, section: f.section,
+      tagline: f.tagline, description: f.description, anatomy: list(f.anatomy, "\n"), tags: list(f.tags), fonts: f.fonts,
+      palette: list(f.palette), image: f.image, prompt: f.prompt }, null, 2) + ",";
   };
   form.oninput = update; update();
   $("#addCopy", m).onclick = () => copy(out.value);
@@ -250,6 +286,13 @@ function thumb(e) {
       g += `<rect x="${W * .5}" y="0" width="${W * .5}" height="${H * .55}" fill="${a1}"/>
         <text x="30" y="${H - 40}" font-family="Helvetica,Arial,sans-serif" font-weight="700" font-size="220" fill="${ink}" letter-spacing="-12">01</text>`;
       for (let i = 1; i < 12; i++) g += `<line x1="${(W / 12) * i}" y1="0" x2="${(W / 12) * i}" y2="${H}" stroke="${ink}" stroke-opacity=".08"/>`;
+      break;
+    case "organic-soft-ui":
+      [0, 1, 2].forEach(i => {
+        const x = 260 + i * 180, y = 230 - i * 50;
+        g += `<rect x="${x}" y="${y}" width="160" height="${H - y + 20}" rx="18" fill="${a2}"/><rect x="${x}" y="${y}" width="160" height="44" rx="18" fill="#fff"/><rect x="${x + 18}" y="${y + 120}" width="124" height="28" rx="14" fill="${bg}"/>`;
+      });
+      g += `<rect x="40" y="60" width="200" height="22" rx="4" fill="${ink}"/><rect x="40" y="92" width="150" height="22" rx="4" fill="${ink}"/>`;
       break;
     default:
       for (let i = 0; i < 10; i++) g += `<rect x="0" y="${i * 50}" width="${W}" height="25" fill="${i % 2 ? a1 : a2}" opacity=".5"/>`;

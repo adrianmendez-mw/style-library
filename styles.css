@@ -69,7 +69,13 @@ a { color: inherit; }
 .btn--lime:hover { background: var(--paper); border-color: var(--paper); }
 
 /* Chips */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+.chips { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 14px; }
+.chips--section { margin-bottom: 32px; padding-top: 14px; border-top: 1px solid var(--grey-3); }
+.chips__label { font: 400 14px/1 var(--sans); color: var(--grey-dark); min-width: 64px; }
+.chip[data-empty]:not([aria-pressed="true"]) { opacity: .4; }
+.chips--section .chip { background: transparent; border-color: var(--grey-2); }
+.chips--section .chip:hover { border-color: var(--black); background: var(--white); }
+.chips--section .chip[aria-pressed="true"] { background: var(--black); border-color: var(--black); }
 .chip {
   font: 400 12px/1 var(--label); letter-spacing: .06em; text-transform: uppercase;
   border: 1px solid var(--black); background: var(--white); color: var(--black);
@@ -112,6 +118,11 @@ a { color: inherit; }
 .thumb img, .thumb svg { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .5s ease; }
 .card:hover .thumb img, .card:hover .thumb svg { transform: scale(1.03); }
 .thumb__badge { position: absolute; top: 12px; left: 12px; font: 400 10px/1 var(--label); letter-spacing: .08em; text-transform: uppercase; background: var(--black); color: var(--paper); padding: 6px 9px; border-radius: 999px; }
+.thumb__badge--r { left: auto; right: 12px; background: var(--lime); color: var(--black); }
+.specs { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; }
+.anatomy { margin: 0; padding-left: 22px; display: grid; gap: 6px; font-size: 15px; }
+.anatomy li::marker { font: 400 12px var(--label); color: var(--grey-dark); }
+.spec { margin: 0; font-size: 15px; }
 .card__body { padding: 20px 20px 16px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
 .card__head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
 .card__title { font: 200 28px/1.1 var(--serif); margin: 0; }
@@ -170,7 +181,9 @@ a { color: inherit; }
   .guide dd { border-top: 0; padding-top: 2px; }
   .modal__body { padding: 22px; }
   .modal__title { font-size: 36px; }
-  .form { grid-template-columns: 1fr; }
+  .form, .specs { grid-template-columns: 1fr; }
+  .specs { gap: 0; }
+  .chips__label { width: 100%; }
   .card__tagline { white-space: normal; text-align: right; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

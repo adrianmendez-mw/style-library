@@ -77,7 +77,7 @@ function renderGrid() {
       <div class="card__body">
         <div class="card__head"><h3 class="card__title">${esc(e.title)}</h3><span class="card__tagline">${esc(e.tagline || "")}</span></div>
         <div class="tags">${tags.slice(0, 3).map(t => `<span class="tag">${esc(t)}</span>`).join("")}${tags.length > 3 ? `<span class="tag tag--more">+${tags.length - 3}</span>` : ""}</div>
-        <div class="card__foot"><span><b>◆</b> ${esc(c.name)}</span><span>${String(idx).padStart(2, "0")} / ${String(entries.length).padStart(2, "0")}</span></div>
+        <div class="card__foot"><span><b>◆</b>${esc(c.name)}</span><span class="card__num">${String(idx).padStart(2, "0")} / ${String(entries.length).padStart(2, "0")}</span></div>
       </div>
     </button>`;
   }).join("");
@@ -87,7 +87,7 @@ function renderGrid() {
 function guideHTML(c, withCount) {
   const n = entries.filter(e => e.category === c.id).length;
   return `<div>
-      <p class="eyebrow">Style guide${withCount ? ` / ${n} entr${n === 1 ? "y" : "ies"}` : ""}</p>
+      <p class="eyebrow">style guide${withCount ? `, ${n} entr${n === 1 ? "y" : "ies"}` : ""}</p>
       <h2>${esc(c.name)}</h2>
       <p>${esc(c.summary)}</p>
       <p class="label">Vocabulary</p>
@@ -112,10 +112,10 @@ function openEntry(id) {
     <div class="modal__body">
       <div class="modal__head"><h2 class="modal__title">${esc(e.title)}</h2><span class="modal__meta">${esc(e.tagline || "")}</span></div>
       <p class="modal__desc">${esc(e.description || "")}</p>
-      <p class="modal__meta">◆ <a href="#style=${esc(c.id || "")}">${esc(c.name)}</a>${e.section ? ` / ${esc(e.section)}` : ""}${e.url ? ` / <a href="${esc(e.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ""}</p>
+      <p class="modal__meta"><a href="#style=${esc(c.id || "")}">${esc(c.name)}</a>${e.section ? ` / ${esc(e.section)}` : ""}${e.url ? ` / <a href="${esc(e.url)}" target="_blank" rel="noopener">Visit site ↗</a>` : ""}</p>
       <div class="tags">${(e.tags || []).map(t => `<span class="tag">${esc(t)}</span>`).join("")}</div>
       ${e.palette?.length ? `<p class="label">Palette</p><div class="palette">${e.palette.map(p => `<span class="swatch"><i style="background:${esc(p)}"></i>${esc(p)}</span>`).join("")}</div>` : ""}
-      ${e.prompt ? `<div class="recipe"><p class="label" style="margin-top:0;color:var(--accent)">Image recipe: replace [SUBJECT]</p>${prompt}</div>` : ""}
+      ${e.prompt ? `<div class="recipe"><p class="label">Image recipe: replace [SUBJECT]</p>${prompt}</div>` : ""}
       <div class="actions">
         <button class="btn" data-copy="brief" type="button">Copy brief</button>
         ${e.prompt ? `<button class="btn" data-copy="prompt" type="button">Copy image prompt</button>` : ""}

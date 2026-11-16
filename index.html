@@ -7,14 +7,14 @@
   <meta name="description" content="A library of website and section screenshots grouped by design style, with the vocabulary to describe each one.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;1,200&family=Inter+Tight:wght@300;400;500&family=Space+Grotesk:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="masthead">
     <div class="wrap masthead__inner">
       <div>
-        <p class="eyebrow">Inspiration index / vol. 01</p>
+        <p class="eyebrow">inspiration index, vol. 01</p>
         <h1 class="masthead__title">Style <em>Library</em></h1>
         <p class="masthead__lede">Sites and sections grouped by visual language, with the words to describe them and a prompt to recreate the imagery.</p>
       </div>
@@ -23,7 +23,7 @@
           <span class="sr-only">Search</span>
           <input id="search" type="search" placeholder="Search titles, tags, vocabulary" autocomplete="off">
         </label>
-        <button class="btn btn--ghost" id="addBtn" type="button">+ Add entry</button>
+        <button class="btn btn--lime" id="addBtn" type="button">+ Add entry</button>
       </div>
     </div>
   </header>
@@ -36,9 +36,11 @@
     <p id="empty" class="empty" hidden>Nothing matches that search.</p>
   </main>
 
-  <footer class="wrap foot">
-    <span>Add entries in <code>data/library.json</code>, screenshots in <code>shots/</code>.</span>
-    <span id="count"></span>
+  <footer class="site-foot">
+    <div class="wrap foot">
+      <span>Add entries in <code>data/library.json</code>, screenshots in <code>shots/</code>.</span>
+      <span id="count"></span>
+    </div>
   </footer>
 
   <dialog id="modal" class="modal"></dialog>

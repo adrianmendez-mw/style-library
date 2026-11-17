@@ -294,6 +294,11 @@ function thumb(e) {
       });
       g += `<rect x="40" y="60" width="200" height="22" rx="4" fill="${ink}"/><rect x="40" y="92" width="150" height="22" rx="4" fill="${ink}"/>`;
       break;
+    case "dark-kinetic-studio":
+      [[60, 250], [330, 90], [440, 90], [550, 90], [660, 90]].forEach(([x, w], i) =>
+        g += `<rect x="${x}" y="150" width="${w}" height="300" fill="${i ? a2 : a1}" opacity="${i ? .55 : .9}"/>`);
+      g += `<rect x="60" y="60" width="380" height="26" fill="${ink}"/><rect x="60" y="96" width="250" height="26" fill="${a1}"/>`;
+      break;
     default:
       for (let i = 0; i < 10; i++) g += `<rect x="0" y="${i * 50}" width="${W}" height="25" fill="${i % 2 ? a1 : a2}" opacity=".5"/>`;
   }

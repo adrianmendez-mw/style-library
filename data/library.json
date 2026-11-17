@@ -189,9 +189,166 @@
       "motion": "Soft rise-in on scroll, cards staggered by height, gentle hover lift on CTAs.",
       "useWhen": "Food, agriculture, wellness, sustainability and B2B products that want warm and natural instead of techy.",
       "avoid": "Neon greens and pure black; keep every color slightly muted and warm."
+    },
+    {
+      "id": "dark-kinetic-studio",
+      "name": "Dark Kinetic Studio",
+      "summary": "Near-black agency sites where the motion carries the brand: text that resolves from pixels, sections that drag and glide, cards that open up into video. Quiet palette, loud interaction.",
+      "vocabulary": [
+        "near-black ground",
+        "grotesk + mono pairing",
+        "pixel / scramble text reveal",
+        "single acid accent",
+        "draggable carousel",
+        "infinite logo marquee",
+        "hover-to-expand cards",
+        "hover-to-play video",
+        "focus-dim siblings",
+        "underlined caps links",
+        "bracketed nav [ MENU ]"
+      ],
+      "typography": "A wide, friendly grotesk for headlines (AT Aero, Space Grotesk, PP Neue Montreal) at 50-60px light/regular, paired with a monospace (DM Mono, JetBrains Mono) for body, captions and buttons in caps.",
+      "color": "#0E0E0E to #151515 ground, off-white text, mid greys for de-emphasised words, one acid accent (lime #DCFF87 style) used only inside animations. Imagery brings the rest of the colour.",
+      "layout": "Wide side gutters (~5.5vw), headline staggered across two or three lines, mono paragraph bottom-left and a single underlined CTA bottom-right. Full-bleed horizontal rows for logos and testimonials.",
+      "motion": "Everything reacts: headlines resolve from a pixel or scramble effect, logo rows scroll forever and can be grabbed, carousels drag with inertia, hovered cards grow while siblings shrink or dim, videos play only on hover.",
+      "useWhen": "Design and branding studios, creative agencies, portfolios and premium product launches where the site itself is the case study.",
+      "avoid": "Adding a second accent colour or more than one animated effect per element. Without restraint it turns into a demo reel."
     }
   ],
   "entries": [
+    {
+      "url": "https://www.produx.design/",
+      "category": "dark-kinetic-studio",
+      "id": "produx-video-grid",
+      "title": "Produx Hover-Expand Video Grid",
+      "section": "Gallery",
+      "tagline": "dark kinetic x accordion video cards",
+      "description": "A row of five tall journal cards. The active card is wide and plays its video; the others are thin slivers showing a still. Hovering a sliver makes it grow into the wide card, starts its video and reveals the title, mono excerpt and READ MORE link, while the previous card shrinks back.",
+      "anatomy": [
+        "Big two-line statement headline above the row",
+        "Five tall cards in one row, equal height (~526px)",
+        "One wide card (~37%) and four thin slivers (~14%)",
+        "Video fills each card with object-fit: cover, dark gradient at the bottom",
+        "Small tag chip top-right (Branding, Press)",
+        "Bottom-left: title in grotesk, two-line mono excerpt, underlined READ MORE",
+        "Hover: the hovered card grows, the others shrink, its video plays and text fades in"
+      ],
+      "tags": [
+        "hover-to-expand cards",
+        "hover-to-play video",
+        "accordion gallery",
+        "flex-grow transition",
+        "tag chip",
+        "mono excerpt"
+      ],
+      "fonts": "Title: grotesk ~28px regular. Excerpt: mono 14px, 1.6 line height. Link: mono caps 13px with a 1px underline.",
+      "palette": [
+        "#6B6553",
+        "#0E0E0E",
+        "#F2F1EC",
+        "#2E4B3C"
+      ],
+      "image": "shots/produx-journal.gif",
+      "prompt": "Build a journal/gallery row for [BRAND] in the Dark Kinetic Studio style. Five tall cards (height ~36vw max 560px) in one flex row with a small gap. Each card holds a muted, looping, playsinline video [VIDEOS] with object-fit: cover and a dark bottom gradient, a small tag chip top-right, and bottom-left a grotesk title, a two-line monospace excerpt and an underlined caps READ MORE link. Only one card is open at a time: the open card has flex-grow 3.5 and the others flex-grow 1; transition flex-grow over 0.7s with a smooth ease-out. On hover (and on focus for keyboard), open that card, play its video and pause the others, and fade the text in with a short delay. Closed cards hide their text and show the video's first frame. Content: [CONTENT]. On mobile, turn the row into a horizontal scroll-snap carousel with every card open and videos autoplaying when in view."
+    },
+    {
+      "url": "https://www.produx.design/",
+      "category": "dark-kinetic-studio",
+      "id": "produx-testimonial-drag",
+      "title": "Produx Draggable Testimonials",
+      "section": "Testimonials",
+      "tagline": "dark kinetic x drag carousel with focus dim",
+      "description": "A row of pale periwinkle-grey square cards that you drag sideways with the mouse. The card under the cursor stays bright while every other card and the heading blur and dim back, which pulls attention onto one quote at a time. A thin ruler of tick marks above the row works as the progress indicator.",
+      "anatomy": [
+        "Two-line headline top-left, underlined READ ALL REVIEWS link top-right",
+        "Thin ruler of vertical ticks as a progress bar",
+        "Row of near-square cards (~28vw) bleeding off both sides",
+        "Card top: round avatar, name and company",
+        "Card body: quote in grotesk ~20px, bottom-aligned",
+        "Drag (with inertia) to move the row",
+        "Hover: siblings and heading blur (~6px) and dim to ~30%, hovered card stays sharp"
+      ],
+      "tags": [
+        "draggable carousel",
+        "focus-dim siblings",
+        "tick ruler progress",
+        "bleeding row",
+        "avatar card",
+        "blur-dim siblings"
+      ],
+      "fonts": "Heading: grotesk ~56px regular. Quote: grotesk 20px regular. Name: grotesk 14px medium, company in mono 12px.",
+      "palette": [
+        "#1B2621",
+        "#CFCBD3",
+        "#2F3432",
+        "#F2F1EC"
+      ],
+      "image": "shots/produx-testimonials.gif",
+      "prompt": "Build a testimonials section for [BRAND] in the Dark Kinetic Studio style. Dark ground (#151a17). Header row: a two-line grotesk headline \"[HEADLINE]\" on the left and an underlined mono caps link READ ALL REVIEWS on the right. Under it, a full-width ruler of thin vertical ticks that fills from left to right as the carousel moves. Then a horizontal row of near-square cards (width 28vw, aspect 0.95) with a pale periwinkle-grey background (#CFCBD3), bleeding off both edges. Each card: avatar circle, name and company at the top, the quote at the bottom in a 20px grotesk. The row is draggable with pointer events and inertia (no buttons). When the pointer is over a card, blur every other card and the headline (filter: blur(6px)) and fade them to 30% opacity over 300ms. Testimonials: [CONTENT]. On mobile, use native horizontal scroll with scroll-snap and drop the dimming."
+    },
+    {
+      "url": "https://www.produx.design/",
+      "category": "dark-kinetic-studio",
+      "id": "produx-logo-marquee",
+      "title": "Produx Grabbable Logo Marquee",
+      "section": "Logos",
+      "tagline": "dark kinetic x endless logo tiles",
+      "description": "Client logos sit in square dark tiles with a hairline border, in one row that scrolls forever. The cursor turns into a grab hand and you can throw the row in either direction; a small TRUSTED BY label follows the pointer.",
+      "anatomy": [
+        "Full-bleed row, no heading of its own",
+        "Square tiles (~19vw) with a 1px #222 border on #141414",
+        "White logo centred in each tile, original brand colour kept",
+        "Row duplicated for a seamless infinite loop",
+        "cursor: grab, drag to scrub with inertia, then autoplay resumes",
+        "Small TRUSTED BY label that follows the cursor"
+      ],
+      "tags": [
+        "infinite logo marquee",
+        "draggable marquee",
+        "cursor-follow label",
+        "hairline tiles"
+      ],
+      "fonts": "Cursor label: mono caps 10px on a white chip.",
+      "palette": [
+        "#0E0E0E",
+        "#151515",
+        "#2A2A2A",
+        "#FFFFFF"
+      ],
+      "image": "shots/produx-logos.gif",
+      "prompt": "Build a logo marquee for [BRAND] in the Dark Kinetic Studio style. Full-width row on #0E0E0E with square tiles (19vw, max 280px, gap 3vw), each #151515 with a 1px #2A2A2A border and a logo centred at ~60% width. Duplicate the list so the row loops seamlessly, and move it left at a slow constant speed with requestAnimationFrame (not a CSS animation, so it can be dragged). Use cursor: grab; on pointer drag, move the row with the pointer, keep the release velocity as inertia, then ease back to the auto speed. Show a small white chip reading TRUSTED BY in mono caps that follows the cursor while it is over the row. Respect prefers-reduced-motion by stopping the autoplay. Logos: [LOGOS]."
+    },
+    {
+      "url": "https://www.produx.design/",
+      "category": "dark-kinetic-studio",
+      "id": "produx-pixel-headline",
+      "title": "Produx Pixel Reveal Headline",
+      "section": "CTA",
+      "tagline": "dark kinetic x pixel-resolve type",
+      "description": "A three-line statement that resolves out of pixels as it scrolls into view. A band of lime pixels sweeps across the words, leaving them white, while the last words stay grey until the sweep reaches them. Below, a mono paragraph on the left and an underlined LET'S TALK link on the right.",
+      "anatomy": [
+        "Three-line headline, first line indented to the right",
+        "Pixel / scramble sweep in lime moving left to right",
+        "Resolved words white, unresolved words mid grey",
+        "Mono paragraph bottom-left (max ~48ch)",
+        "Underlined caps LET'S TALK link bottom-right"
+      ],
+      "tags": [
+        "pixel / scramble text reveal",
+        "staggered headline indent",
+        "grey-to-white word reveal",
+        "single acid accent"
+      ],
+      "fonts": "Headline: grotesk ~64px regular, tight leading. Paragraph: mono 16px, 1.6 line height. Link: mono caps 18px with underline.",
+      "palette": [
+        "#0E0E0E",
+        "#F2F1EC",
+        "#4A4A4A",
+        "#DCFF87"
+      ],
+      "image": "shots/produx-about.gif",
+      "prompt": "Build a statement/CTA section for [BRAND] in the Dark Kinetic Studio style. Background #0E0E0E. A three-line headline \"[HEADLINE]\" in a wide grotesk ~64px, with the first line indented by about 20% so the text block steps. When it scrolls into view, reveal it with a pixel sweep: draw the text to a canvas (or split into characters) and pass a band of small lime (#DCFF87) square pixels across it from left to right; characters behind the band turn white, characters ahead of it stay #4A4A4A. Scrub the sweep with scroll progress. Below: a monospace paragraph [PARAGRAPH] on the left and an underlined caps LET'S TALK link on the right. Reduced motion: show the headline fully white with no sweep."
+    },
     {
       "id": "olive-stepped-pricing",
       "title": "Olive Stepped Pricing",
